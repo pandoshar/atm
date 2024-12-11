@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="withdrawalWindow" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #064635;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.atmsimulator.Controllers.WithdrawalController">
+   <children>
+      <Button fx:id="menuButton" layoutX="538.0" layoutY="14.0" mnemonicParsing="false" onAction="#onMenuButton" style="-fx-background-color: #8b0000;" text="Menu" textFill="WHITE" />
+      <Text fill="GOLD" layoutX="133.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose the amount you want to withdraw">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <TextField fx:id="amountField" layoutX="331.0" layoutY="211.0" prefHeight="140.0" prefWidth="200.0" promptText="Choose other withdraw amount" style="-fx-background-color: #196f3d;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Button fx:id="fiftyButton" layoutX="68.0" layoutY="211.0" mnemonicParsing="false" onAction="#onMoneyButton" prefHeight="60.0" prefWidth="105.0" style="-fx-background-color: #196f3d;" text="50€" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="onehunButton" layoutX="202.0" layoutY="211.0" mnemonicParsing="false" onAction="#onMoneyButton" prefHeight="60.0" prefWidth="106.0" style="-fx-background-color: #196f3d;" text="100€" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="fivehunButton" layoutX="202.0" layoutY="292.0" mnemonicParsing="false" onAction="#onMoneyButton" prefHeight="60.0" prefWidth="106.0" style="-fx-background-color: #196f3d;" text="500€" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="twohunButton" layoutX="67.0" layoutY="292.0" mnemonicParsing="false" onAction="#onMoneyButton" prefHeight="60.0" prefWidth="106.0" style="-fx-background-color: #196f3d;" text="200€" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Text fill="GOLD" layoutX="21.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ATM Simulator">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Button fx:id="withdrawButton" layoutX="451.0" layoutY="380.0" mnemonicParsing="false" onAction="#onWithdrawButton" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #196f3d;" text="Withdraw" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Text fill="GOLD" layoutX="67.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Balance:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="balanceText" fill="GOLD" layoutX="483.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000€">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="ErrorText" fill="WHITE" layoutX="216.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" style="visibility: hidden;" text="Withdraw succesfully">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
