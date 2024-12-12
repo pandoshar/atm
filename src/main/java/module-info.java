@@ -9,6 +9,8 @@ module org.example.atmsimulator {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires junit;
+    requires org.testng;
 
     opens org.example.atmsimulator to javafx.fxml;
     exports org.example.atmsimulator;
