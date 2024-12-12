@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public class HistoryController implements Initializable {
 
     @FXML
-    private Text PINText;
+    private Text PINText, balanceText, cardNumberText, dateText, genderText, idText, nameText, surnameText, telephoneText;
 
     @FXML
     private TableView<Transaction> TransactionTable;
@@ -44,31 +44,7 @@ public class HistoryController implements Initializable {
     private TableColumn<Transaction, String> dateColumn;
 
     @FXML
-    private Text balanceText;
-
-    @FXML
-    private Text cardNumberText;
-
-    @FXML
-    private Text dateText;
-
-    @FXML
-    private Text genderText;
-
-    @FXML
     private AnchorPane historyPane;
-
-    @FXML
-    private Text idText;
-
-    @FXML
-    private Text nameText;
-
-    @FXML
-    private Text surnameText;
-
-    @FXML
-    private Text telephoneText;
 
     @FXML
     void onExitButton(ActionEvent event) throws IOException {
@@ -77,7 +53,6 @@ public class HistoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Populate text fields with UserSession data
         UserSession userSession = UserSession.getInstance();
         idText.setText(String.valueOf(userSession.getId()));
         nameText.setText(userSession.getName());
@@ -89,13 +64,11 @@ public class HistoryController implements Initializable {
         telephoneText.setText(userSession.getTelephone());
         balanceText.setText(String.format("%.2f", userSession.getBalance()));
 
-        // Initialize table columns
         idColumn.setCellValueFactory(new PropertyValueFactory<>("transactionId"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
 
-        // Load transaction data into the table
         loadTransactionData(userSession.getId());
     }
 

@@ -19,28 +19,16 @@ import java.sql.SQLException;
 public class TransferController {
 
     @FXML
-    private TextField cardField;
+    private TextField cardField, numberField;
 
     @FXML
-    private Text cardText, errorText;
+    private Text numberText, cardText, errorText, transferText;
 
     @FXML
-    private Button checkButton;
-
-    @FXML
-    private Button exitButton;
-
-    @FXML
-    private TextField numberField;
-
-    @FXML
-    private Text numberText;
+    private Button checkButton, exitButton;
 
     @FXML
     private AnchorPane transferPane;
-
-    @FXML
-    private Text transferText;
 
     @FXML
     void onCheckButton(ActionEvent event) {
@@ -59,13 +47,11 @@ public class TransferController {
                     String telephoneNumber = rs.getString("telephone_number");
                     int id = rs.getInt("id");
 
-                    // Store client data in UserSession for transfer
                     UserSession userSession = UserSession.getInstance();
                     userSession.setClientName(name);
                     userSession.setClientNumber(telephoneNumber);
                     userSession.setClientId(id);
 
-                    // Switch to the `transfer2.fxml` scene
                     new SceneSwitch(transferPane, "transfer2.fxml");
                 } else {
                     cardText.setText("Invalid card number or phone number.");

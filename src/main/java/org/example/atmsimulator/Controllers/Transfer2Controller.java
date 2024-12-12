@@ -19,22 +19,13 @@ import java.sql.SQLException;
 public class Transfer2Controller {
 
     @FXML
-    private TextField clientNameField;
-
-    @FXML
-    private TextField clientNumberField;
+    private TextField clientNameField, clientNumberField, moneyField;
 
     @FXML
     private Text errorText;
 
     @FXML
-    private Button exitButton;
-
-    @FXML
-    private TextField moneyField;
-
-    @FXML
-    private Button sendButton;
+    private Button sendButton, exitButton;
 
     @FXML
     private AnchorPane transfer2Pane;
@@ -57,13 +48,12 @@ public class Transfer2Controller {
         double money = Double.parseDouble(moneyString);
 
         try (Connection connection = DatabaseConn.getConnection()) {
-            connection.setAutoCommit(false); // Enable transaction management
+            connection.setAutoCommit(false);
 
             UserSession userSession = UserSession.getInstance();
-            int senderId = userSession.getId(); // Use the getId() method from UserSession
+            int senderId = userSession.getId();
             int receiverId = userSession.getClientId();
 
-            // Check if sender has sufficient balance
             String checkBalanceQuery = "SELECT balance FROM person WHERE id = ?";
             try (PreparedStatement checkBalanceStmt = connection.prepareStatement(checkBalanceQuery)) {
                 checkBalanceStmt.setInt(1, senderId);
@@ -79,46 +69,41 @@ public class Transfer2Controller {
                 }
             }
 
-            // Deduct amount from sender's account
             String updateBalanceQuery = "UPDATE account SET balance = balance - ? WHERE account_id = ?";
             try (PreparedStatement updateBalanceStmt = connection.prepareStatement(updateBalanceQuery)) {
                 updateBalanceStmt.setDouble(1, money);
-                updateBalanceStmt.setInt(2, senderId); // Using the sender's account ID
+                updateBalanceStmt.setInt(2, senderId);
                 updateBalanceStmt.executeUpdate();
             }
 
-            // Update the person table's balance
             String updatePersonBalanceQuery = "UPDATE person SET balance = " +
                     "(SELECT SUM(balance) FROM account WHERE person_id = ?) " +
                     "WHERE id = ?";
             try (PreparedStatement updatePersonStmt = connection.prepareStatement(updatePersonBalanceQuery)) {
                 updatePersonStmt.setInt(1, senderId);
-                updatePersonStmt.setInt(2, senderId); // Using the sender's person ID
+                updatePersonStmt.setInt(2, senderId);
                 updatePersonStmt.executeUpdate();
             }
 
-            // Add amount to receiver's account
             String updateReceiverBalanceQuery = "UPDATE account SET balance = balance + ? WHERE account_id = ?";
             try (PreparedStatement updateReceiverStmt = connection.prepareStatement(updateReceiverBalanceQuery)) {
                 updateReceiverStmt.setDouble(1, money);
-                updateReceiverStmt.setInt(2, receiverId); // Using the receiver's account ID
+                updateReceiverStmt.setInt(2, receiverId);
                 updateReceiverStmt.executeUpdate();
             }
 
-            // Update the person table's balance for the receiver
             String updateReceiverPersonBalanceQuery = "UPDATE person SET balance = " +
                     "(SELECT SUM(balance) FROM account WHERE person_id = ?) " +
                     "WHERE id = ?";
             try (PreparedStatement updateReceiverPersonStmt = connection.prepareStatement(updateReceiverPersonBalanceQuery)) {
                 updateReceiverPersonStmt.setInt(1, receiverId);
-                updateReceiverPersonStmt.setInt(2, receiverId); // Using the receiver's person ID
+                updateReceiverPersonStmt.setInt(2, receiverId);
                 updateReceiverPersonStmt.executeUpdate();
             }
 
-            // Insert into transaction table
             String insertTransactionQuery = "INSERT INTO transaction (account_id, transaction_type, amount) VALUES (?, 'Transfer', ?)";
             try (PreparedStatement insertTransactionStmt = connection.prepareStatement(insertTransactionQuery)) {
-                insertTransactionStmt.setInt(1, senderId); // Using the sender's account ID
+                insertTransactionStmt.setInt(1, senderId);
                 insertTransactionStmt.setDouble(2, money);
                 insertTransactionStmt.executeUpdate();
             }
@@ -137,6 +122,4 @@ public class Transfer2Controller {
             clientNumberField.clear();
         }
     }
-
-
 }

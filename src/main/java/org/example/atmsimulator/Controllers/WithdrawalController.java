@@ -30,13 +30,10 @@ public class WithdrawalController {
     private TextField amountField;
 
     @FXML
-    private Button menuButton;
+    private Button withdrawButton, menuButton;
 
     @FXML
     private Button fiftyButton, onehunButton, twohunButton, fivehunButton;
-
-    @FXML
-    private Button withdrawButton;
 
     @FXML
     private AnchorPane withdrawalWindow;
@@ -59,17 +56,16 @@ public class WithdrawalController {
             double amount = Double.parseDouble(amountText);
 
             try (Connection connection = DatabaseConn.getConnection() ) {
-                connection.setAutoCommit(false); // Enable transaction management
+                connection.setAutoCommit(false);
 
-                // Fetch the account details
                 String fetchAccountQuery = "SELECT a.account_id, a.balance, a.account_type, p.id as person_id " +
                         "FROM account a " +
                         "JOIN person p ON a.person_id = p.id " +
-                        "WHERE p.name = ? AND a.account_type = ?"; // Fetch based on account type
+                        "WHERE p.name = ? AND a.account_type = ?";
 
                 try (PreparedStatement fetchAccountStmt = connection.prepareStatement(fetchAccountQuery)) {
                     UserSession userSession = UserSession.getInstance();
-                    String accountType = "Savings"; // Replace this with user input for account type selection
+                    String accountType = "Savings";
                     fetchAccountStmt.setString(1, userSession.getName());
                     fetchAccountStmt.setString(2, accountType);
 
@@ -110,7 +106,6 @@ public class WithdrawalController {
 
                             userSession.setBalance(currentBalance - amount);
 
-                            // Update UI feedback
                             balanceText.setText(String.format("%.2f", currentBalance - amount));
                             ErrorText.setText("Withdrawal successful.");
                             ErrorText.setVisible(true);
@@ -139,7 +134,6 @@ public class WithdrawalController {
             amountField.clear();
         }
     }
-
 
     private double Sum = 0;
 

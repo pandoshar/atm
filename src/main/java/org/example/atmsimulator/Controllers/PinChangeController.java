@@ -33,7 +33,6 @@ public class PinChangeController {
     @FXML
     private Button oneButton, twoButton, threeButton, fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, zeroButton;
 
-    // StringBuilder to track current input
     StringBuilder currentText = new StringBuilder();
 
     @FXML

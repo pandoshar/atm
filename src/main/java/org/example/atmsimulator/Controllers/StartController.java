@@ -53,7 +53,6 @@
                         String storedPin = resultSet.getString("pin");
 
                         if (storedPin.equals(pinCode)) {
-                            // Save data to UserSession
                             UserSession userSession = UserSession.getInstance();
                             userSession.setId(id);
                             userSession.setName(name);
@@ -65,9 +64,7 @@
                             userSession.setTelephone(telephoneNumber);
                             userSession.setBalance(balance);
 
-                            // Navigate to menu.fxml
                             new SceneSwitch(startPane, "menu.fxml");
-
                         } else {
                             errorText.setText("Incorrect PIN.");
                             errorText.setVisible(true);

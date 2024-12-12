@@ -40,7 +40,6 @@ public class MenuController{
         nameText.setText("Hello, " + userSession.getName() + "!");
 
         try (Connection connection = DatabaseConn.getConnection()) {
-            // Fetch total balance from person table
             String personBalanceQuery = "SELECT balance FROM person WHERE id = ?";
             try (PreparedStatement personBalanceStmt = connection.prepareStatement(personBalanceQuery)) {
                 personBalanceStmt.setInt(1, userSession.getId());
@@ -54,7 +53,6 @@ public class MenuController{
                 }
             }
 
-            // Fetch savings and checking balances from account table
             String accountQuery = "SELECT account_type, balance FROM account WHERE person_id = ?";
             try (PreparedStatement accountStmt = connection.prepareStatement(accountQuery)) {
                 accountStmt.setInt(1, userSession.getId());
