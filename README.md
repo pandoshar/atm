@@ -90,4 +90,16 @@ The ATM Simulator is a virtual representation of the physical ATM machine, repli
 - **JDBC**  
 - **SQL**  
 
+## UML Diagram
+![Screenshot 2024-12-12 224414](https://github.com/user-attachments/assets/c8fa35b9-6b6b-467f-a0e8-0ce8f80053e8)
+
+## Screenshots
+![Screenshot 2024-12-12 223855](https://github.com/user-attachments/assets/79533b26-82fe-4b3d-b97d-bf48f65f2b7e)
+![Screenshot 2024-12-12 223724](https://github.com/user-attachments/assets/7e335f87-f6a5-42d4-9462-df9126adb8d1)
+![Screenshot 2024-12-12 223736](https://github.com/user-attachments/assets/0ad191a0-22a7-43a1-8856-6259b388e9b1)
+![Screenshot 2024-12-12 223757](https://github.com/user-attachments/assets/c16715ff-8ade-4fc2-a0b9-8b9966bc6ae6)
+![Screenshot 2024-12-12 223814](https://github.com/user-attachments/assets/05a2fd6a-9693-4a77-9ac9-4a7934c63e08)
+![Screenshot 2024-12-12 223827](https://github.com/user-attachments/assets/613c4307-fa22-4310-b5b4-494dc88a4bc1)
+![Screenshot 2024-12-12 223836](https://github.com/user-attachments/assets/a0ee8d99-1d48-40b3-87c3-d6a68297975f)
+
 For any questions or contributions, feel free to contact the team members.
